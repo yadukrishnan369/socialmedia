@@ -1,0 +1,32 @@
+ {% extends 'basepage.html' %}{% load static %}{% block content %}
+<br>
+<div class="container" style="padding-left:150px;">
+
+
+    <div class="row" style="background-color: rgb(198, 240, 241);height: 350px;width: 1000px;;">
+
+        <div class="col-2 text-center">
+
+        </div>
+
+        <div class="col-8" style="text-align: center;padding-top: 50px;">
+            <div>
+                <h2>Create Your Post</h2>
+            </div>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="input-group input-group-lg">
+
+                </div> <br>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="quotes" placeholder="Enter Your Post here..."></textarea>
+                <input type="submit" value="Create Post" id="btn" class="btn btn-primary form-control mt-3">
+
+                <br>
+
+            </form>
+        </div>
+        <div class="col-2"></div>
+
+    </div>
+</div>
+{% endblock %}
