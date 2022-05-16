@@ -10,6 +10,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 
 # Create your views here.
+
 def Adminsignup(request):
     if request.method=='POST':
         userName=request.POST['username']
@@ -42,6 +43,7 @@ def approvedQuotes(request):
     appproved=ApproveQuotes.objects.all().order_by('-id')
     return render(request,'approvedQuotes.html',{'appproved':appproved})
 
+
 @csrf_exempt
 def Approve(request):
     user_id=UserSignup.objects.get(id=request.session['user_session'])
@@ -49,14 +51,17 @@ def Approve(request):
         Quotes_id=AddQuotes.objects.get(id=request.POST['quotes_id'])
         Approvequotes=ApproveQuotes(user=user_id,quotes=Quotes_id)
         Approvequotes.save()
-        return JsonResponse({"message":"Approved"}) 
-
+        return JsonResponse({"message":"success"}) 
     return redirect('approvedquotes')
+
+
 
 
 def Reject(request,id):
     AddQuotes.objects.filter(id=id).delete()
     return redirect('adminhome')        
+
+
 
 def logout(request):
     try:

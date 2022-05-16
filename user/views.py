@@ -67,7 +67,7 @@ def viewQuotes(request):
 
 
 
-
+#logout 
 def logout(request):
     try:
         request.session.flush()
@@ -76,7 +76,7 @@ def logout(request):
         return render(request,'userlogin.html')
 
 
-
+#add quotes page
 def addquotes(request):
     if request.method=='POST':
             quotes=request.POST['quotes']
@@ -85,8 +85,32 @@ def addquotes(request):
            
             userquotes=AddQuotes(quotes=quotes,userName_id=user)
             userquotes.save()
+            return redirect('viewquotes')
     return render(request,'addquotes.html')        
 
-def Like(request):
-    pass
-    return redirect('userhome')    
+
+
+#like function
+def Likes(request):
+
+    if request.method=='POST':
+        temp = request.POST['li_post']
+        post=ApproveQuotes.objects.get(id=temp)
+
+        if 'like' in request.POST:
+            user = request.session['user_session']
+           
+            post.like_counts+=1
+            post.save()
+            obj = Like(like_user_id=user,post_key_id=temp)
+            obj.save()
+
+        if 'unlike' in request.POST:
+            temp = request.POST['li_post']
+            user = request.session['user_session']
+            obj2 = Like.objects.get(like_user_id=user,post_key=temp)
+            obj2.delete()
+            post.like_counts-=1
+            post.save()
+            
+    return redirect('viewquotes')

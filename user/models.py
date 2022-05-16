@@ -18,11 +18,11 @@ class ApproveQuotes(models.Model):
     user=models.ForeignKey(UserSignup, on_delete=models.CASCADE, default="")
     quotes=models.ForeignKey(AddQuotes, on_delete=models.CASCADE, default="")
 
-    def __str__(self):
-        return self.quotes
+   
 
 
-class Postlike(models.Model):
-    user_id=models.ForeignKey(UserSignup,on_delete=models.CASCADE)
+class Like(models.Model):
+    like_user = models.ForeignKey(UserSignup, on_delete= models.CASCADE,default='')
+    post_key = models.ForeignKey(ApproveQuotes, on_delete= models.CASCADE,default='')
 
     

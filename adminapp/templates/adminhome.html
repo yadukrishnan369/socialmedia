@@ -1,4 +1,6 @@
  {% extends 'base.html' %}{% block content %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <div class="text-center mb-2">
     <h1>Posts</h1>
 </div>
@@ -16,34 +18,37 @@
                 </p><br>
             </div>
 
-            <div class="text-end mb-3"> <button type="submit" class="btn btn-success" role="button" id="approve" onclick="approve('{{i.id}}')">Approve</button>
-                <a href="Reject/{{i.id}}" class="btn btn-danger" role="button" onclick="return confirm('Are You Sure To Want Reject')">Reject</a></div>
+            <div class="text-end mb-3">
+                <button type="submit" class="btn btn-success" role="button" id="approve" onclick="approve('{{i.id}}')">Approve</button>
+                <a href="Reject/{{i.id}}" class="btn btn-danger" role="button" onclick="return confirm('Are You Sure To Want Reject')">Reject</a>
+            </div>
+
 
         </div><br>
         <hr>
+
     </div>
     {% endfor %}
-
     <script>
         function approve(quotes_id) {
 
             $.ajax({
-                url: '/Approve',
+                url: '/approve',
                 type: 'POST',
                 data: {
                     quotes_id
                 },
                 success: function(response) {
-
                     alert('success')
                         // alert(response.messege);
                 },
                 error: function(response) {
-                    alert('error')
+                    alert('errorrrr')
                 }
             })
         }
     </script>
+
     <br>
 
 </div> {% endblock %}

@@ -9,7 +9,7 @@ urlpatterns = [
     path('base',views.base,name='base'),
     path('adminhome',views.adminHome,name='adminhome'),
     path('approvedquotes',views.approvedQuotes,name='approvedquotes'),
-    path('Approve',views.Approve,name='Approve'),
+    path('approve',views.Approve,name='approve'),
     path('Reject/<int:id>',views.Reject,name='Reject'),
     path('adminlogout',views.logout,name='adminlogout'),
 ]

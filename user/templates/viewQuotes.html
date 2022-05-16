@@ -1,6 +1,6 @@
 {% extends 'basepage.html' %}{% block content %}
 <div class="text-center mb-2">
-    <h1>Posts</h1>
+    <h1>POSTS</h1>
 </div>
 <div class="container">
 
@@ -13,18 +13,26 @@
             </div>
             <div class="ms-3 mt-4">
                 <p>
-                    <h5>{{quote.quotes.quotes}}</h5>..
+                    <h5>{{quote.quotes.quotes}}</h5>
                 </p><br>
             </div>
-            <form action="" method="POST">
-                {% csrf_token %}
+            <form action="" method="post">
+                {% csrf_token %} {% if d.like %}
 
-                <div class="text-end mt-2 mb-3"> <a href="likes" class="btn btn-primary fa fa-thumbs-up " role="button" name="like">Like</a><span>12 Person's Liked</span></div>
+                <button type="submit" id="" class="fa fa-thumbs-up" name="unlike" style="font-size: 38px; color:red;"></button> {% else %}
+
+                <button type="submit" id="" class="fa fa-thumbs-up" name="like" style="font-size: 38px; color:black;"></button> {% endif %}
+
+                <input type="hidden" name="li_post" value="{{d.id}}">
             </form>
-        </div><br>
-        <hr>
+            {% if d.like != 0 %}
+            <b>{{d.like_count}} Like 1 Person {{d.like_count|pluralize}}</b> {% endif %}
+        </div>
+
     </div>
-    {% endfor %}
+    <hr> {% endfor %}
     <br>
+</div>
+<br>
 
 </div> {% endblock %}
