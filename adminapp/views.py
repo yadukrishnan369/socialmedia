@@ -51,7 +51,7 @@ def Approve(request):
         Quotes_id=AddQuotes.objects.get(id=request.POST['quotes_id'])
         Approvequotes=ApproveQuotes(user=user_id,quotes=Quotes_id)
         Approvequotes.save()
-        return JsonResponse({"message":"success"}) 
+        return JsonResponse({"message":"Post Approved"}) 
     return redirect('approvedquotes')
 
 
