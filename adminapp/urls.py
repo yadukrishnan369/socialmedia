@@ -11,5 +11,5 @@ urlpatterns = [
     path('approvedquotes',views.approvedQuotes,name='approvedquotes'),
     path('approve',views.Approve,name='approve'),
     path('Reject/<int:id>',views.Reject,name='Reject'),
-    path('adminlogout',views.logout,name='adminlogout'),
+    path('adminlogout',views.adminlogout,name='adminlogout'),
 ]

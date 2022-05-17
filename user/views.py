@@ -17,14 +17,22 @@ def welcomePage(request):
 
 #userlogin page
 def userLogin(request):
+
+    if 'user_session' in request.session:
+        return redirect('userhome')
+
     if request.method=='POST':
         userName=request.POST['username']
         password=request.POST['password']
-        uservalidate=UserSignup.objects.get(userName=userName)
-        if uservalidate.userName==userName and uservalidate.password==password:
-            request.session['user_session']=uservalidate.id
-            return redirect('userhome')
-        return redirect('userlogin')    
+        try:
+            uservalidate=UserSignup.objects.get(userName=userName)
+            if uservalidate.userName==userName and uservalidate.password==password:
+                request.session['user_session']=uservalidate.id
+                return redirect('userhome')
+            else:
+                return render(request,'userlogin.html',{'message':'Login Failed','message2':'Incorrect Your Password'})
+        except:
+            return render(request,'userlogin.html',{'message':'Login Failed','message2':'Incorrect Your username'})    
     return render(request,'userlogin.html')
 
 
@@ -52,10 +60,12 @@ def usernameAjax(request):
 
 #basepage 
 def base(request):
+   
     return render(request,'basepage.html')
 
 #user home page
 def userHome(request):
+
     return render(request,'userhome.html')  
 
 

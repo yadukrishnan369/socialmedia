@@ -5,7 +5,7 @@ from django.urls import path,include
 
 urlpatterns = [
     
-    path('',views.welcomePage,name='userlogin'),
+    path('',views.welcomePage,name='welcome'),
     path('userlogin',views.userLogin,name='userlogin'),
     path('usersignup',views.userSignup,name='usersignup'),
     path('usernameAjax',views.usernameAjax,name='usernameAjax'),
@@ -14,5 +14,5 @@ urlpatterns = [
     path('viewquotes',views.viewQuotes,name='viewquotes'),
     path('logout',views.logout,name='logout'),
     path('addquotes',views.addquotes,name='addquotes'),
-    path('like',views.Like,name='like')
+    path('like',views.Likes,name='like')
 ]

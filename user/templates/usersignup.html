@@ -27,20 +27,20 @@
                     {% csrf_token %}
                     <div class="mb-3 mt-4">
                         <label for="exampleInputtext1" class="form-label"><h5>Name</h5></label>
-                        <input type="text" class="form-control" id="username" aria-describedby="textHelp" name="name">
+                        <input type="text" class="form-control" id="name" aria-describedby="textHelp" name="name">
                     </div> <span id="label1"></span>
                     <div class="mb-3">
                         <label for="exampleInputtext1" class="form-label"><h5>User Name</h5></label>
-                        <input type="text" class="form-control" id="exampleInputtext1" aria-describedby="textHelp" name="username">
+                        <input type="text" class="form-control" id="username" aria-describedby="textHelp" name="username">
                     </div> <span id="label2"></span>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label"><h5>Password</h5></label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+                        <input type="password" class="form-control" id="password" name="password">
                     </div> <span id="label3"></span>
 
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label"><h5>Confirm Password</h5></label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" name="confpassword">
+                        <input type="password" class="form-control" id="confpassword" name="confpassword">
                     </div> <span id="label4"></span>
 
                     <input type="submit" value="SignUp" id="btn" class="btn btn-primary form-control">
@@ -63,12 +63,11 @@
             var name = document.myform.name.value;
             var username = document.myform.username.value;
             var password = document.myform.password.value;
-            varconfpassword = document.myform.confpassword.value;
+            var confpassword = document.myform.confpassword.value;
 
             if (name == "") {
                 document.getElementById('label1').innerHTML = "* All Fields Are Mandatory"
                 document.getElementById('label1').style.color = "red"
-
                 return false;
             } else if (username == "") {
                 document.getElementById('label2').innerHTML = "* All Fields Are Mandatory"

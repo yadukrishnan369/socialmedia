@@ -24,12 +24,17 @@ def adminLogin(request):
     if request.method=='POST':
         userName=request.POST['adminname']
         password=request.POST['password']
-        uservalidate=AdminSignup.objects.get(userName=userName)
-        if uservalidate.userName==userName and uservalidate.password==password:
-            request.session['admin_session']=uservalidate.id
-            return redirect('adminhome')
-        return redirect('adminlogin')    
+        try:
+            uservalidate=AdminSignup.objects.get(userName=userName)
+            if uservalidate.userName==userName and uservalidate.password==password:
+                request.session['admin_session']=uservalidate.id
+                return redirect('adminhome')
+            else:
+                 return render(request,'adminlogin.html',{'message1':'Login Failed , Incorrect Your Password'})
+        except:
+            return render(request,'adminlogin.html',{'message2':' Login Failed , Incorrect Your username'})    
     return render(request,'adminlogin.html')
+
 
 def base(request):
     return render(request,'base.html')
@@ -63,7 +68,7 @@ def Reject(request,id):
 
 
 
-def logout(request):
+def adminlogout(request):
     try:
         request.session.flush()
         return redirect('adminlogin')
